@@ -1,12 +1,23 @@
 <?php
  session_start();
- if($_POST['validate_box'] == $_SESSION['$key']){
+ $_SESSION['timenow']=time();
+ $time=$_SESSION['timenow']-$_SESSION['start'];
+ // echo $time;
+ if($time<60){
+ if($_POST['otp'] == $_SESSION['$key']){
  	// echo "success";
- header('location:../view/home.php ');
+ unset($_SESSION['$key']);
+ header('location:../view/add_vehicle.php');
  }
  else{
- 	echo "enter validate code to continue";
+		header('Location: ../view/validation.php?type=login_error');
+ 
  }
- unset($_SESSION);
-
+}
+else{
+ unset($_SESSION['$key']);
+	header('Location: ../view/home.php?type=code_error');
+}
 ?>
+ 
+ 
