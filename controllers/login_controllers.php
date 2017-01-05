@@ -2,19 +2,19 @@
 	include_once'../model/curd_operations.php';
 	include_once '../model/db.php';
 	include_once 'common_functions.php';
-	session_start();
 	$_SESSION['start'] = time();
-	$phone_number=$_POST['MobileNumber'];
-	$_SESSION['phoneno']=$phone_number;
-	get_user_number($phone_number);
-	// create_session($phone_number);
-	function get_user_number($phone_number){
-		$con=db_connect();
+	$phone_number=$_REQUEST['MobileNumber'];
+	$con=db_connect();
+	$user_data=get_user_detail($phone_number,$con);
+	create_session($user_data);
+	get_user_number($phone_number,$con);
+	
+	
+	function get_user_number($phone_number,$con){
 		$condition=" `phonenumber` = '".$phone_number."'";
 		$selected_row = select('phonenumber', 'users',$condition, $con);
 		if ( $selected_row[0]['phonenumber'] == $phone_number) {
 			$key=verification_code();
-			// echo $key;
 			$_SESSION['$key']=$key;
 			send_message($phone_number,$key);
 		}else{

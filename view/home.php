@@ -1,4 +1,6 @@
-<html>
+<?php
+include_once '../controllers/common_functions.php';
+?><html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,13 +44,13 @@
                 <div id="signup">
                    <form method="post">
                        <div class="field-wrap">
-                           <input type="text/css" class="form-control" name="Name" placeholder="Name" required>
+                           <input type="text/css" class="form-control" name="Name" placeholder="Name" required autofocus>
                            <br>
                        </div>
                        <div class="field-wrap">
                            <div class="input-group">
                                <span class="input-group-addon">+91</span>
-                               <input  type="text" onkeypress="return isNumber(event)" class="form-control" name="mobile_number" placeholder="mobile_number" maxlength="10" required autofocus>
+                               <input  type="text" onkeypress="return isNumber(event)" class="form-control" name="mobile_number" placeholder="mobile_number" maxlength="10" required >
                                <br>
                            </div>
                        </div>

@@ -1,5 +1,7 @@
 <?php 
-session_start();
+include_once'../model/curd_operations.php';
+include_once '../model/db.php';
+include_once '../controllers/common_functions.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +16,6 @@ session_start();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -24,21 +25,24 @@ session_start();
                 </div>
             </div>
         </div>
-    </nav>
+</nav>
     <div class="container">
-    <div class="form">
-    <form method="post">
-    <div class="field-wrap">
-     <?php 
-        if(isset($_GET['type'])){
-          if($_GET['type'] == "login_error"){
-            echo '<p style="color: whitesmoke;text-align: center;font-family: monospace;">Enter Valid Code</p>';
-         }
-       } 
-       ?> <?php print_r($_SESSION['$key']);?>
-    	<input type="text" name="otp" placeholder="enter the otp" class="form-control" required>
-    	</div>
-    	<input type="submit" name="submit" value="continue" class="button button-block" formaction="../controllers/verification_controllers.php">
-    </form>
-</div>
+        <div class="form">
+            <form method="post">
+                <div class="field-wrap">
+                    <?php 
+                        if(isset($_GET['type'])){
+                        if($_GET['type'] == "login_error"){
+                        echo '<p style="color: whitesmoke;text-align: center;font-family: monospace;">Enter Valid Code</p>';
+                        }
+                        } 
+                    ?>
+                    <?php print_r($_SESSION['$key']);?>
+    	               <input type="text" name="otp" placeholder="enter the otp" class="form-control" required>
+    	       </div>
+    	               <input type="submit" name="submit" value="continue" class="button button-block" formaction="../controllers/verification_controllers.php">
+            </form>
+        </div>
     </div>
+</body>
+</html>
